@@ -4,21 +4,22 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 
 // Components
 import Header from "./components/Header";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import MyProfile from "./components/MyProfile";
 
 // Pages
-import Welcome from "./Pages/Welcome";
-import Home from "./Pages/Home";
-import ProductDetails from "./Pages/ProductDetails";
-import Cart from "./Pages/Cart";
-import Checkout from "./Pages/Checkout";
-import About from "./Pages/About";
-import Electronics from "./Pages/Electronics";
-import Fashion from "./Pages/Fashion";
-import Beauty from "./Pages/Beauty";
-import Appliances from "./Pages/Appliances";
-import SellerDashboard from "./Pages/SellerDashboard";
+import Welcome from "./pages/Welcome";
+import Home from "./pages/Home";
+import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import About from "./pages/About";
+import Electronics from "./pages/Electronics";
+import Fashion from "./pages/Fashion";
+import Beauty from "./pages/Beauty";
+import Appliances from "./pages/Appliances";
+import SellerDashboard from "./pages/SellerDashboard";
 
 // Protected Route Component for Seller
 const SellerRoute = ({ children }) => {
@@ -35,7 +36,12 @@ function App() {
         <Welcome onFinish={() => setShowWelcome(false)} />
       ) : (
         <div className="flex flex-col min-h-screen">
-          
+          {/* Header */}
+          <Header />
+
+          {/* Navbar with Category Dropdowns */}
+          <Navbar />
+
           {/* Main Content */}
           <main className="flex-1 p-6">
             <Routes>
@@ -46,9 +52,16 @@ function App() {
               <Route path="/product/:id" element={<ProductDetails />} />
 
               {/* Category Pages */}
+              <Route path="/products/Electronics" element={<Electronics />} />
               <Route path="/products/Electronics/:subcategory" element={<Electronics />} />
+
+              <Route path="/products/Fashion" element={<Fashion />} />
               <Route path="/products/Fashion/:subcategory" element={<Fashion />} />
+
+              <Route path="/products/Beauty" element={<Beauty />} />
               <Route path="/products/Beauty/:subcategory" element={<Beauty />} />
+
+              <Route path="/products/Appliances" element={<Appliances />} />
               <Route path="/products/Appliances/:subcategory" element={<Appliances />} />
 
               {/* Cart / Checkout / About */}

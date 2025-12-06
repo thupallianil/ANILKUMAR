@@ -14,11 +14,36 @@ class Product(models.Model):
 		(CATEGORY_APPLIANCES, 'Appliances'),
 	]
 
+	# Subcategory choices
+	SUBCATEGORY_CHOICES = [
+		# Electronics
+		('smartphones', 'Smartphones'),
+		('laptops', 'Laptops'),
+		('headphones', 'Headphones'),
+		('smart watches', 'Smart Watches'),
+		# Fashion
+		("men's clothing", "Men's Clothing"),
+		("women's clothing", "Women's Clothing"),
+		('shoes', 'Shoes'),
+		('accessories', 'Accessories'),
+		# Appliances
+		('refrigerators', 'Refrigerators'),
+		('washing machines', 'Washing Machines'),
+		('microwaves', 'Microwaves'),
+		('air conditioners', 'Air Conditioners'),
+		# Beauty
+		('makeup', 'Makeup'),
+		('skincare', 'Skincare'),
+		('haircare', 'Haircare'),
+		('fragrances', 'Fragrances'),
+	]
+
 	seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='products', null=True, blank=True)
 	name = models.CharField(max_length=200)
 	description = models.TextField(blank=True)
 	price = models.DecimalField(max_digits=10, decimal_places=2)
 	category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, blank=True)
+	subcategory = models.CharField(max_length=50, choices=SUBCATEGORY_CHOICES, blank=True)
 	stock = models.IntegerField(default=0)
 	image = models.URLField(blank=True)
 	created_at = models.DateTimeField(auto_now_add=True)

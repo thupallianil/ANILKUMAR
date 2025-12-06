@@ -111,7 +111,12 @@ class ProductListCreateView(generics.ListCreateAPIView):
 		# Filter by category
 		category = self.request.query_params.get('category', None)
 		if category:
-			queryset = queryset.filter(category=category)
+			queryset = queryset.filter(category__iexact=category)
+		
+		# Filter by subcategory
+		subcategory = self.request.query_params.get('subcategory', None)
+		if subcategory:
+			queryset = queryset.filter(subcategory__iexact=subcategory)
 		
 		# Filter by price range
 		min_price = self.request.query_params.get('min_price', None)
