@@ -57,19 +57,6 @@ Welcome! This folder contains everything you need to understand, deploy, and ext
 
 ---
 
-## 📖 Documentation Files
-
-| Document | Purpose | Read Time |
-|----------|---------|-----------|
-| [QUICK_START.md](QUICK_START.md) | Setup & Running | 5 min |
-| [INTEGRATION_COMPLETED.md](INTEGRATION_COMPLETED.md) | API Reference | 10 min |
-| [API_INTEGRATION_SUMMARY.md](API_INTEGRATION_SUMMARY.md) | Overview | 8 min |
-| [INTEGRATION_SUMMARY_VISUAL.md](INTEGRATION_SUMMARY_VISUAL.md) | Visual Guide | 7 min |
-| [CODE_CHANGES_SUMMARY.md](CODE_CHANGES_SUMMARY.md) | Code Details | 6 min |
-| [INTEGRATION_VERIFICATION.md](INTEGRATION_VERIFICATION.md) | Checklist | 4 min |
-
----
-
 ## 🎯 Use Cases - Which Document to Read
 
 ### "I want to run the app locally"
