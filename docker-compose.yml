@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./myproject
+      dockerfile: Dockerfile
+    container_name: flipkart-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./myproject:/app
+      - /app/__pycache__
+    environment:
+      - DEBUG=True
+      - ALLOWED_HOSTS=*
+    networks:
+      - flipkart-network
+
+  frontend:
+    build:
+      context: ./flipcart2
+      dockerfile: Dockerfile
+    container_name: flipkart-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./flipcart2:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - flipkart-network
+
+networks:
+  flipkart-network:
+    driver: bridge
