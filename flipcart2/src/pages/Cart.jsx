@@ -1,6 +1,5 @@
 // src/Pages/Cart.jsx
 import React, { useState, useEffect } from "react";
-import Header from "../components/Header";
 import { Link } from "react-router-dom";
 import { getCart as getCartAPI, removeFromCart, updateCartItem } from "../utils/apiMethods";
 
@@ -12,7 +11,7 @@ const Cart = () => {
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     setIsLoggedIn(!!token);
-    
+
     if (token) {
       fetchCart();
     } else {
@@ -103,58 +102,56 @@ const Cart = () => {
   const total = calculateTotal();
 
   return (
-    <div>
-      <Header />
-      <main className="p-4 max-w-3xl mx-auto">
-        <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
+    <main className="p-4 max-w-3xl mx-auto">
+      <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
 
-        {loading ? (
-          <p className="text-gray-600">Loading cart...</p>
-        ) : cart.length === 0 ? (
-          <p className="text-gray-600">Your cart is empty!</p>
-        ) : (
-          <>
-            {cart.map((item) => (
-              <div key={item.id} className="flex justify-between items-center mb-4 p-3 border rounded-lg border-gray-200">
-                <div className="flex-1">
-                  <span className="font-medium">{getItemName(item)}</span>
-                  <span className="text-gray-600 ml-2">₹{getItemPrice(item)}</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => handleUpdateQuantity(item.product?.id || item.id, item.quantity - 1)}
-                    className="px-2 py-1 border border-gray-300 rounded hover:bg-gray-100"
-                  >
-                    -
-                  </button>
-                  <span className="w-8 text-center font-medium">{item.quantity}</span>
-                  <button
-                    onClick={() => handleUpdateQuantity(item.product?.id || item.id, item.quantity + 1)}
-                    className="px-2 py-1 border border-gray-300 rounded hover:bg-gray-100"
-                  >
-                    +
-                  </button>
-                </div>
+      {loading ? (
+        <p className="text-gray-600">Loading cart...</p>
+      ) : cart.length === 0 ? (
+        <p className="text-gray-600">Your cart is empty!</p>
+      ) : (
+        <>
+          {cart.map((item) => (
+            <div key={item.id} className="flex justify-between items-center mb-4 p-3 border rounded-lg border-gray-200">
+              <div className="flex-1">
+                <span className="font-medium">{getItemName(item)}</span>
+                <span className="text-gray-600 ml-2">₹{getItemPrice(item)}</span>
+              </div>
+              <div className="flex items-center gap-3">
                 <button
-                  onClick={() => handleRemove(item.product?.id || item.id)}
-                  className="ml-4 text-red-500 hover:underline"
+                  onClick={() => handleUpdateQuantity(item.product?.id || item.id, item.quantity - 1)}
+                  className="px-2 py-1 border border-gray-300 rounded hover:bg-gray-100"
                 >
-                  Remove
+                  -
+                </button>
+                <span className="w-8 text-center font-medium">{item.quantity}</span>
+                <button
+                  onClick={() => handleUpdateQuantity(item.product?.id || item.id, item.quantity + 1)}
+                  className="px-2 py-1 border border-gray-300 rounded hover:bg-gray-100"
+                >
+                  +
                 </button>
               </div>
-            ))}
-            <p className="font-bold mt-6 text-xl">Total: ₹{total}</p>
-            <Link
-              to="/checkout"
-              className="mt-4 inline-block bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition"
-            >
-              Proceed to Checkout
-            </Link>
-          </>
-        )}
-      </main>
-    </div>
+              <button
+                onClick={() => handleRemove(item.product?.id || item.id)}
+                className="ml-4 text-red-500 hover:underline"
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+          <p className="font-bold mt-6 text-xl">Total: ₹{total}</p>
+          <Link
+            to="/checkout"
+            className="mt-4 inline-block bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition"
+          >
+            Proceed to Checkout
+          </Link>
+        </>
+      )}
+    </main>
   );
 };
 
 export default Cart;
+
